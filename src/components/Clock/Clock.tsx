@@ -1,12 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-type ClockPropsType = {
-
-}
+type ClockPropsType = {}
 
 
-export const Clock: React.FC<ClockPropsType> = () =>{
+export const Clock: React.FC<ClockPropsType> = () => {
     const [date, setDate] = useState(new Date());
+
+    useEffect(() => {
+        setInterval(() => {
+            setDate(new Date())
+        }, 1000)
+    }, []);
+
     return <div>
         <span>{date.getHours()}</span>
         :
