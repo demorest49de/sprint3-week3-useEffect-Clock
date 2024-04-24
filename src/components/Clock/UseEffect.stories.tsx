@@ -34,11 +34,14 @@ export const KeysTrackerDemo = () => {
     console.log(' component render: ' + text);
 
     useEffect(() => {
-        window.addEventListener('keydown', (e)=> {
+        const handler = (e: KeyboardEvent)=> {
             setText((state)=> state + e.key)
-            console.log(e.key);
-        })
-
+            console.log(' e.key, text: ', e.key, text);
+        }
+        window.addEventListener('keydown', handler)
+        return ()=>{
+            window.removeEventListener('keydown', handler)
+        }
     }, [])
 
     return <>
